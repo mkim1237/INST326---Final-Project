@@ -12,16 +12,32 @@
     attributes.
     
     """
-    #def __init__():
+    def __init__(self, name, address, email, phoneNum):
         """ reads the line and use regular expression to initialize contact values 
         (names, phone number, relation, etdc)
+        Args: 
+        name(str): the name of the person in contactlist
+        address(str): the address of the person in contactlist
+        email(str): the email of the person in contactlist
+        phoneNum(int): the phoneNum of the person in contactlist
         
         """
+        self.name = name
+        self.address = address
+        self.email = email
+        self.phoneNum = phoneNum
+
     
-    #def __repr__():
+        
+    
+    def __repr__(self):
         """ magic method that return formal representation of contact object
+        Returns:
+        returns self of the name, address, email and phoneNum
         
         """
+        return self.name + ", " + self.address + ", "+ self.email+ ", "+ self.phoneNum
+        
     
 
 #def readCont():
