@@ -22,10 +22,7 @@
         phoneNum(int): the phoneNum of the person in contactlist
         
         """
-        self.name = name
-        self.address = address
-        self.email = email
-        self.phoneNum = phoneNum
+        
 
     
         
@@ -36,7 +33,7 @@
         returns self of the name, address, email and phoneNum
         
         """
-        return self.name + ", " + self.address + ", "+ self.email+ ", "+ self.phoneNum
+        
         
     
 
