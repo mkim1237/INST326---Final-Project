@@ -98,7 +98,13 @@ class Sort:
         """
     
     #def choose():
-        """
+        """Returns back the found contact
+        Args:
+            search_name(str): stores the name of the found contact
+        Return:
+            search_name(str): returns the found contact
+            None: returns None if contact isn't found
+        
         
         """
 
