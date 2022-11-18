@@ -66,18 +66,34 @@ class Sort:
         
         """
     
-    def categorize():
-        """
-        
+    def categorize(self):
+        """ Sorts the master dataframe created with the init method of the 
+        "Sort" class by making smaller dataframes from the main dataframe 
+        depending on data from the amster data frame.
+        Side effets:
+            contDF (dataframe): changes how the dataframe is categorized and
+            organized. Smaller dataframes are created depending on the 
+            categories/groups.
         """
     
 
 #class Find(Sort):
-    """ Finds the person or category
+    """ Finds the person or category that the user is looking for.
     
     """
-    #def __init__():
-        """ use super() ..?? to initialize?
+    #def __init__(self, search_name, search_category = None):
+        """ use super() to initialize a smaller object that displays the contact
+        that the user is looking for. It's a child function so that it can
+        directly take the object and find what the user wants better.
+        
+        Args:
+            search_name (string): the name of the contact that the user is look
+            ing for.
+            search_category (string): the category and or datafram column name
+            that the user is searching for specifically. search_category is set
+            to None by default incase the user simply wants to look for a person
+            's name rather than including more information.
+        
         
         """
     
