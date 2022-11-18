@@ -101,13 +101,24 @@ class Sort:
         """Returns back the found contact
         Args:
             search_name(str): stores the name of the found contact
-        Return:
+        Returns:
             search_name(str): returns the found contact
             None: returns None if contact isn't found
         
         
         """
-
+    #def __str__(self):
+        """Returns an informal representation of the found contact (or all the found contacts)
+        The representation will be in a list format containing strings: name, address, email, phoneNum
+        of the found contact
+        
+        
+        Returns:
+            list(str) : the list representation
+        """
+            
+        
+        
 #def Msg():
     """ use conditional expressions to send a message
     
