@@ -97,7 +97,7 @@ class Sort:
         
         """
     
-    #def choose():
+    #def choose(self):
         """Returns back the found contact
         Args:
             search_name(str): stores the name of the found contact
@@ -126,13 +126,30 @@ class Sort:
     
     
 
-#def main(filepath):
-    """ has optional parameters
+#def main(filepath, name):
+    """ Sort and organize the contact litst, then find a person to message or notify.
     Args: 
          filepath(str): filepath containing contact list, address, email, name, phone number and messeges. 
+         name (str): the name of the person in the contact
+         
+    Side effects:
+        Prints the message or notification written to the person
     """
 
+def parse_args(arglist):
+    """ Parse command line arguments.
+    
+    Expect two mandatory arguments:
+        filename: path to a file of names and info of families.
+        name: the name of the person in contact
+    
+    Args:
+        arglist (list of str): arguments from the command line.
+        
+    Returns:
+        namespace: the parsed arguments, as a namespace.
 
+    """
 #if __name__ == "__main__":
 
 
