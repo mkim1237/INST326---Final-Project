@@ -126,9 +126,10 @@ class Sort:
     
     
 
-#def main():
+#def main(filepath):
     """ has optional parameters
-    
+    Args: 
+         filepath(str): filepath containing contact list, address, email, name, phone number and messeges. 
     """
 
 
