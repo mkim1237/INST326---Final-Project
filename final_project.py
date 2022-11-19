@@ -119,8 +119,14 @@ class Sort:
             
         
         
-#def Msg():
+#def Msg(name):
     """ use conditional expressions to send a message
+    
+    Args: 
+        name (string): name of the person who we send the message to
+        
+    Side effects:
+        Prints a f string of the message
     
     """
     
