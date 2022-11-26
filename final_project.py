@@ -7,7 +7,7 @@
 #
 
 
-#class Contact:
+class Contact:
     """ Reads a line of contact list and divides the contact info into different 
     attributes.
     
@@ -15,11 +15,12 @@
     def __init__(self, name, address, email, phoneNum):
         """ reads the line and use regular expression to initialize contact values 
         (names, phone number, relation, etdc)
+        
         Args: 
-        name(str): the name of the person in contactlist
-        address(str): the address of the person in contactlist
-        email(str): the email of the person in contactlist
-        phoneNum(int): the phoneNum of the person in contactlist
+            name(str): the name of the person in contactlist
+            address(str): the address of the person in contactlist
+            email(str): the email of the person in contactlist
+            phoneNum(int): the phoneNum of the person in contactlist
         
         """
         self.name = name
@@ -28,64 +29,141 @@
         self.phoneNum = phoneNum
 
     
-        
-    
     def __repr__(self):
         """ magic method that return formal representation of contact object
+        
+        
         Returns:
         returns self of the name, address, email and phoneNum
         
         """
+<<<<<<< HEAD
         return self.name + ", " + self.address + ", "+ self.email+ ", "+ self.phoneNum
         
+=======
+>>>>>>> a2a8ce82e6970dd02bea5b34d92e391b52012c73
     
 
-#def readCont():
-    """ Using with open, read all lines of contact and puts them into a list
+    
+
+def readCont(filename):
+    """ Using with open, read all lines of contact file and puts them into a single list.
+    
+    Args:
+        filename (str): the text filepath of the lines of contact info.
+        
+    Returns:
+        contactList (list of str): a list of each line that is the Contact object.
     
     """
 
-#class Sort:
-    """ Put the list of contacts into a dataframe using panda. Then, sort them 
+class Sort:
+    """ Convert the list of contacts into a dataframe using panda. Then, sort them 
     to put different groups/cateogries of the contact into separate dataframes.
         
     """
-    #def __init__()
+    def __init__(self, list):
+        """ Creates an attribute of dataframe by converting the list argument.
+        
+        Args:
+            list (list of str): the list of contact information made by function 
+            readCont
+        
+        Side effects:
+            contDf (dataframe): dataframe of the contact
+        
+        """
     
+    def categorize(self):
+        """ Sorts the master dataframe created with the init method of the 
+        "Sort" class by making smaller dataframes from the main dataframe 
+        depending on data from the amster data frame.
+        Side effets:
+            contDF (dataframe): changes how the dataframe is categorized and
+            organized. Smaller dataframes are created depending on the 
+            categories/groups.
+        """
     
-    #def
 
-#class Find(Contact):
-    """ Finds the person or category
+#class Find(Sort):
+    """ Finds the person or category that the user is looking for.
     
     """
-    #def __init__():
-        """ use super() ..?? to initialize?
+    #def __init__(self, search_name, search_category = None):
+        """ use super() to initialize a smaller object that displays the contact
+        that the user is looking for. It's a child function so that it can
+        directly take the object and find what the user wants better.
+        
+        Args:
+            search_name (string): the name of the contact that the user is look
+            ing for.
+            search_category (string): the category and or datafram column name
+            that the user is searching for specifically. search_category is set
+            to None by default incase the user simply wants to look for a person
+            's name rather than including more information.
+        
         
         """
     
-    #def choose():
-        """
+    #def choose(self):
+        """Returns back the found contact
+        Args:
+            search_name(str): stores the name of the found contact
+        Returns:
+            search_name(str): returns the found contact
+            None: returns None if contact isn't found
+        
         
         """
-
-#def Msg():
+    #def __str__(self):
+        """Returns an informal representation of the found contact (or all the found contacts)
+        The representation will be in a list format containing strings: name, address, email, phoneNum
+        of the found contact
+        
+        
+        Returns:
+            list(str) : the list representation
+        """
+            
+        
+        
+#def Msg(name):
     """ use conditional expressions to send a message
     
-    """
-
-#def main():
-    """ has optional parameters
+    Args: 
+        name (string): name of the person who we send the message to
+        
+    Side effects:
+        Prints a f string of the message
     
     """
+    
+    
 
+#def main(filepath, name):
+    """ Sort and organize the contact litst, then find a person to message or notify.
+    Args: 
+         filepath(str): filepath containing contact list, address, email, name, phone number and messeges. 
+         name (str): the name of the person in the contact
+         
+    Side effects:
+        Prints the message or notification written to the person
+    """
+
+def parse_args(arglist):
+    """ Parse command line arguments.
+    
+    Expect two mandatory arguments:
+        filename: path to a file of names and info of families.
+        name: the name of the person in contact
+    
+    Args:
+        arglist (list of str): arguments from the command line.
+        
+    Returns:
+        namespace: the parsed arguments, as a namespace.
+
+    """
 #if __name__ == "__main__":
 
 
-<<<<<<< HEAD
-=======
-Hi Everyoneeoa 
-
-Testing
-testing again to see something...
->>>>>>> c1ee50c804d3a12fffb76da37ced4b5586660682
