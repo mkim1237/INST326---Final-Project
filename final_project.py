@@ -31,20 +31,12 @@ class Contact:
     
     def __repr__(self):
         """ magic method that return formal representation of contact object
-        
-        
         Returns:
-        returns self of the name, address, email and phoneNum
+            returns self of the name, address, email and phoneNum
         
         """
-<<<<<<< HEAD
         return self.name + ", " + self.address + ", "+ self.email+ ", "+ self.phoneNum
-        
-=======
->>>>>>> a2a8ce82e6970dd02bea5b34d92e391b52012c73
-    
-
-    
+     
 
 def readCont(filename):
     """ Using with open, read all lines of contact file and puts them into a single list.
