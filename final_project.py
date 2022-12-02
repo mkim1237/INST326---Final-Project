@@ -108,10 +108,10 @@ class Sort:
         
         """
     #def __str__(self):
-        """Returns an informal representation of the found contact (or all the found contacts)
-        The representation will be in a list format containing strings: name, address, email, phoneNum
-        of the found contact
-        
+        """Returns an informal representation of the found contact 
+        (or all the found contacts)
+        The representation will be in a list format containing strings: 
+        name, address, email, phoneNum of the found contact
         
         Returns:
             list(str) : the list representation
@@ -120,13 +120,13 @@ class Sort:
         
         
 #def Msg(name):
-    """ use conditional expressions to send a message
+    """Sends a message to the contact
     
     Args: 
-        name (string): name of the person who we send the message to
+        name (string): name of the contact that message is being sent to
         
     Side effects:
-        Prints a f string of the message
+        Prints an f string of the message
     
     """
     
