@@ -132,7 +132,7 @@ class Sort:
     
     
 
-#def main(filepath, name):
+def main(filepath, name):
     """ Sort and organize the contact litst, then find a person to message or notify.
     Args: 
          filepath(str): filepath containing contact list, address, email, name, phone number and messeges. 
@@ -141,6 +141,14 @@ class Sort:
     Side effects:
         Prints the message or notification written to the person
     """
+    with open(filepath, "r", encoding="utf-8") as f:
+        for contact in f:
+            if contact == name:
+                print("Hello {contact} good morning!")     
+            elif contact != name:
+                print("{name} is not in {contact}")
+            else:
+                return None
 
 def parse_args(arglist):
     """ Parse command line arguments.
