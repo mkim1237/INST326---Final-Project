@@ -164,6 +164,13 @@ def parse_args(arglist):
         namespace: the parsed arguments, as a namespace.
 
     """
-#if __name__ == "__main__":
+    parser = ArgumentParser()
+    parser.add_argument("filepath", "name", help="file contains contacts of people")
+    return parser.parse_args(arglist)
+
+if __name__ == "__main__":
+    args = parse_args(sys.argv[1:])
+    main(args.filepath)
+
 
 
