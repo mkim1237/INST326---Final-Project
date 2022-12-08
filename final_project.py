@@ -6,6 +6,7 @@
 #
 #
 
+import pandas as pd
 
 class Contact:
     """ Reads a line of contact list and divides the contact info into different 
@@ -48,6 +49,13 @@ def readCont(filename):
         contactList (list of str): a list of each line that is the Contact object.
     
     """
+    
+    contactList = []
+    with open(filename, "r") as f:
+        for line in f:
+            contactList.append(Contact(line))
+                
+    return contactList
 
 class Sort:
     """ Convert the list of contacts into a dataframe using panda. Then, sort them 
@@ -65,6 +73,7 @@ class Sort:
             contDf (dataframe): dataframe of the contact
         
         """
+        self.contDf = pd.DataFrame(list)
     
     def categorize(self):
         """ Sorts the master dataframe created with the init method of the 
