@@ -38,8 +38,16 @@ class Contact:
         
         """
         return self.name + ", " + self.address + ", "+ self.email+ ", "+ self.phoneNum
-     
-
+    
+    #added by james for the sort class. Returns all attributes as dictionary
+    #entries
+    def as_dict(self):
+        return {'name': self.name, 'address': self.address, 
+                'email': self.email,"phone number":self.phoneNum,
+                "relation": self.relation }
+    
+    
+    
 def readCont(filename):
     """ Using with open, read all lines of contact file and puts them into a single list.
     
@@ -85,7 +93,7 @@ class Sort:
             organized. Smaller dataframes are created depending on the 
             categories/groups.
         """
-    
+        relation_df = self.contDf
 
 #class Find(Sort):
     """ Finds the person or category that the user is looking for.
