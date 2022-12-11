@@ -22,6 +22,7 @@ class Contact:
             address(str): the address of the person in contactlist
             email(str): the email of the person in contactlist
             phoneNum(int): the phoneNum of the person in contactlist
+            relation(str): the relation with the person in contactlist 
         
         """
         self.name = name
