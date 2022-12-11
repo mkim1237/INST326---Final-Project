@@ -1,1 +1,6 @@
-Name, Address, Email, PhoneNum
+Name, Address, Email, PhoneNum, Relationship
+John, 1212 Some Dr Whatever NJ 00000, john123@gmail.com, 4432223333, Friend
+John Cena, 3210 That Rd Something NY 66666, jcena333@gmail.com, 3012229393, Family
+Brarbruh Ahhh, 8282 This Ct Ummmmm MD 11111, brauhh3@gmail.com, 2402223333, Friend
+The Name, 6969 Tiktok Rd LMAOOOO FL 00420, tName@gmail.com, 4430693435, Coworker
+Karen, 7734 Annoy Dr Stfu OH 49494, krrr@gmail.com, 2409996666, Coworker
