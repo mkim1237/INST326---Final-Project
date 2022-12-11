@@ -13,7 +13,7 @@ class Contact:
     attributes.
     
     """
-    def __init__(self, name, address, email, phoneNum):
+    def __init__(self, name, address, email, phoneNum, relation):
         """ reads the line and use regular expression to initialize contact values 
         (names, phone number, relation, etdc)
         
@@ -28,6 +28,7 @@ class Contact:
         self.address = address
         self.email = email
         self.phoneNum = phoneNum
+        self.relation = relation
 
     
     def __repr__(self):
