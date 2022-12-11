@@ -83,7 +83,8 @@ class Sort:
             contDf (dataframe): dataframe of the contact
         
         """
-        self.contDf = pd.DataFrame(list)
+        self.contDf = pd.DataFrame([contact.as_dict() for contact in list])
+    
     
     def categorize(self):
         """ Sorts the master dataframe created with the init method of the 
@@ -94,7 +95,9 @@ class Sort:
             organized. Smaller dataframes are created depending on the 
             categories/groups.
         """
-        relation_df = self.contDf
+        parent_df = self.contDf[self.contDf['relation'] == "Family"]
+        co_worker_df = self.contDf[self.contDf['relation'] == "Cowokrer"]
+        friend_df = self.contDf[self.contDf['relation'] == "Friend"]
 
 #class Find(Sort):
     """ Finds the person or category that the user is looking for.
