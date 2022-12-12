@@ -6,14 +6,17 @@
 #
 #
 
+from argparse import ArgumentParser
 import pandas as pd
+import re
+import sys
 
 class Contact:
     """ Reads a line of contact list and divides the contact info into different 
     attributes.
     
     """
-    def __init__(self, name, address, email, phoneNum, relation):
+    def __init__(self, contact):
         """ reads the line and use regular expression to initialize contact values 
         (names, phone number, relation, etdc)
         
@@ -25,11 +28,29 @@ class Contact:
             relation(str): the relation with the person in contactlist 
         
         """
-        self.name = name
-        self.address = address
-        self.email = email
-        self.phoneNum = phoneNum
-        self.relation = relation
+        
+        self.contact = contact
+        
+        expr = re.search(r"""(?x)
+                         ^(?P<name>[^,]) 
+                         \s
+                         (?P<address>[^,])
+                         \s
+                         (?P<email>[^,])
+                         \s
+                         (?P<phoneNum>[^,])
+                         \s
+                         (?P<relation>[^,])
+                         """, contact)
+        if expr:
+            self.name = expr.group("name")
+            self.address = expr.group("address")
+            self.email = expr.group("email")
+            self.phoneNum = expr.group("phoneNum")
+            self.relation = expr.group("relation")
+        else:
+            raise ValueError
+            
 
     
     def __repr__(self):
@@ -38,7 +59,7 @@ class Contact:
             returns self of the name, address, email and phoneNum
         
         """
-        return self.name + ", " + self.address + ", "+ self.email+ ", "+ self.phoneNum
+        return self.name + ", " + self.address + ", "+ self.email + ", " + self.phoneNum + "," + self.relation
     
     #added by james for the sort class. Returns all attributes as dictionary
     #entries
@@ -99,11 +120,13 @@ class Sort:
         co_worker_df = self.contDf[self.contDf['relation'] == "Cowokrer"]
         friend_df = self.contDf[self.contDf['relation'] == "Friend"]
 
-#class Find(Sort):
+
+
+class Find(Sort):
     """ Finds the person or category that the user is looking for.
     
     """
-    #def __init__(self, search_name, search_category = None):
+    def __init__(self, search_name, search_category = None):
         """ use super() to initialize a smaller object that displays the contact
         that the user is looking for. It's a child function so that it can
         directly take the object and find what the user wants better.
@@ -114,22 +137,22 @@ class Sort:
             search_category (string): the category and or datafram column name
             that the user is searching for specifically. search_category is set
             to None by default incase the user simply wants to look for a person
-            's name rather than including more information.
-        
-        
+            's name rather than including more information.    
         """
+        
+        
     
-    #def choose(self):
+    def choose(self):
         """Returns back the found contact
         Args:
             search_name(str): stores the name of the found contact
         Returns:
             search_name(str): returns the found contact
-            None: returns None if contact isn't found
-        
-        
+            None: returns None if contact isn't found        
         """
-    #def __str__(self):
+        
+        
+    def __str__(self):
         """Returns an informal representation of the found contact 
         (or all the found contacts)
         The representation will be in a list format containing strings: 
@@ -138,10 +161,10 @@ class Sort:
         Returns:
             list(str) : the list representation
         """
-            
         
         
-#def Msg(name):
+        
+def Msg(name):
     """Sends a message to the contact
     
     Args: 
