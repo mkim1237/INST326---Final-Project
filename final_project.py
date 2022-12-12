@@ -128,7 +128,7 @@ class Find(Sort):
     """ Finds the person or category that the user is looking for.
     
     """
-    def __init__(self, search_name, search_category = None):
+    def __init__(self, list):
         """ use super() to initialize a smaller object that displays the contact
         that the user is looking for. It's a child function so that it can
         directly take the object and find what the user wants better.
@@ -141,8 +141,9 @@ class Find(Sort):
             to None by default incase the user simply wants to look for a person
             's name rather than including more information.    
         """
+        super().__init__(list)
         
-        
+    
     
     def choose(self):
         """Returns back the found contact
@@ -152,40 +153,39 @@ class Find(Sort):
             search_name(str): returns the found contact
             None: returns None if contact isn't found        
         """
-        def choose(self):
-       
+    
+    
+        search_fname= input ("Enter the contact's first name.\n")
+        search_lname= input ("Enter the contact's last name. Enter none if no last name.\n")
+        search_category= input ("Enter the contact's relationship to you, or enter none if do not wish to use a category.\n")
         
-            search_fname= input ("Enter the contact's first name.\n")
-            search_lname= input ("Enter the contact's last name. Enter none if no last name.\n")
-            search_category= input ("Enter the contact's relationship to you, or enter none if do not wish to use a category.\n")
-            
-            print (search_fname+search_lname)
-            
-            if search_lname == "none" and search_category== "none":
-                contDf_copy1 = self.contDf.copy()
-                choose_df = contDf_copy1 [contDf_copy1 ['name'] == search_fname]
-                print(choose_df)
-                
-            elif search_lname == "none":
-                contDf_copy1 = self.contDf.copy()
-                choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
-                                        search_fname) 
-                                        & 
-                                        (contDf_copy1["relation"]== 
-                                                        search_category)]
-                print(choose_df)
-                
-            else:
-                contDf_copy1 = self.contDf.copy()
-                full_name= (search_fname+" "+search_lname)
-                choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
-                                        full_name) 
-                                        &
-                                        (contDf_copy1["relation"]== 
-                                                        search_category)]
-                # Todo: back in the initialization step make the names.lower()
-                print(choose_df)
+        print (search_fname+search_lname)
         
+        if search_lname == "none" and search_category== "none":
+            contDf_copy1 = self.contDf.copy()
+            choose_df = contDf_copy1 [contDf_copy1 ['name'] == search_fname]
+            print(choose_df)
+            
+        elif search_lname == "none":
+            contDf_copy1 = self.contDf.copy()
+            choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
+                                    search_fname) 
+                                    & 
+                                    (contDf_copy1["relation"]== 
+                                                    search_category)]
+            print(choose_df)
+            
+        else:
+            contDf_copy1 = self.contDf.copy()
+            full_name= (search_fname+" "+search_lname)
+            choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
+                                    full_name) 
+                                    &
+                                    (contDf_copy1["relation"]== 
+                                                    search_category)]
+            # Todo: back in the initialization step make the names.lower()
+            print(choose_df)
+    
         
         
         
