@@ -201,7 +201,7 @@ class Find(Sort):
         
         
         
-def Msg(name):
+def Msg(filepath, name):
     """Sends a message to the contact
     
     Args: 
@@ -211,6 +211,14 @@ def Msg(name):
         Prints an f string of the message
     
     """
+    if Find(Sort(filepath)) == "Family":
+        return f"Emergency Family Meeting Required!"
+    elif Find(Sort(filepath)) == "Coworker":
+        return f"Reminder for Work/Assignment Due within 24 Hours!"
+    elif Find(Sort(filepath)) == "Friend":
+        return f"Party Plan Incoming~!"
+    else:
+        return f"Currently Unavailable"
     
     
 
@@ -223,14 +231,11 @@ def main(filepath, name):
     Side effects:
         Prints the message or notification written to the person
     """
-    with open(filepath, "r", encoding="utf-8") as f:
-        for contact in f:
-            if contact == name:
-                print("Hello {contact} good morning!")     
-            elif contact != name:
-                print("{name} is not in {contact}")
-            else:
-                return None
+    contList = readCont(filepath)
+    print(contList)
+    
+    print(f"Quick Message Sent to {name}: {Msg(filepath, name)}")
+    
 
 def parse_args(arglist):
     """ Parse command line arguments.
