@@ -98,7 +98,7 @@ class Sort:
         contDf_copy = self.contDf.copy()
         
         parent_df = contDf_copy [contDf_copy ['relation'] == "Family"]
-        co_worker_df = contDf_copy[contDf_copy['relation'] == "Cowokrer"]
+        co_worker_df = contDf_copy[contDf_copy['relation'] == "Coworker"]
         friend_df = contDf_copy[contDf_copy['relation'] == "Friend"]
         
         print(parent_df)
