@@ -156,6 +156,41 @@ class Find(Sort):
             search_name(str): returns the found contact
             None: returns None if contact isn't found        
         """
+        def choose(self):
+       
+        
+            search_fname= input ("Enter the contact's first name.\n")
+            search_lname= input ("Enter the contact's last name. Enter none if no last name.\n")
+            search_category= input ("Enter the contact's relationship to you, or enter none if do not wish to use a category.\n")
+            
+            print (search_fname+search_lname)
+            
+            if search_lname == "none" and search_category== "none":
+                contDf_copy1 = self.contDf.copy()
+                choose_df = contDf_copy1 [contDf_copy1 ['name'] == search_fname]
+                print(choose_df)
+                
+            elif search_lname == "none":
+                contDf_copy1 = self.contDf.copy()
+                choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
+                                        search_fname) 
+                                        & 
+                                        (contDf_copy1["relation"]== 
+                                                        search_category)]
+                print(choose_df)
+                
+            else:
+                contDf_copy1 = self.contDf.copy()
+                full_name= (search_fname+" "+search_lname)
+                choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
+                                        full_name) 
+                                        &
+                                        (contDf_copy1["relation"]== 
+                                                        search_category)]
+                # Todo: back in the initialization step make the names.lower()
+                print(choose_df)
+        
+        
         
         
     def __str__(self):
