@@ -37,7 +37,7 @@ class Contact:
         (?P<phoneNum>[^,])
         \s
         (?P<relation>[^,])
-                         """, contact)
+                         , contact)
         if expr:
             self.name = expr.group("name")
             self.address = expr.group("address")
