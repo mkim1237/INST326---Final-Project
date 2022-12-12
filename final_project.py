@@ -31,16 +31,12 @@ class Contact:
         
         self.contact = contact
         
-        expr = re.search(r"""(?x)
-                         ^(?P<name>[^,]) 
-                         \s
-                         (?P<address>[^,])
-                         \s
-                         (?P<email>[^,])
-                         \s
-                         (?P<phoneNum>[^,])
-                         \s
-                         (?P<relation>[^,])
+        expr = re.search(r"Contact \d:(\n.+)")
+        (r"Contact \d:(\n.+)(\n.+)(\n.+)(\n.+)(\n.+)(\n.+)")
+        (r".+?@.+")
+        (?P<phoneNum>[^,])
+        \s
+        (?P<relation>[^,])
                          """, contact)
         if expr:
             self.name = expr.group("name")
