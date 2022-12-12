@@ -95,9 +95,15 @@ class Sort:
             organized. Smaller dataframes are created depending on the 
             categories/groups.
         """
-        parent_df = self.contDf[self.contDf['relation'] == "Family"]
-        co_worker_df = self.contDf[self.contDf['relation'] == "Cowokrer"]
-        friend_df = self.contDf[self.contDf['relation'] == "Friend"]
+        contDf_copy = self.contDf.copy()
+        
+        parent_df = contDf_copy [contDf_copy ['relation'] == "Family"]
+        co_worker_df = contDf_copy[contDf_copy['relation'] == "Cowokrer"]
+        friend_df = contDf_copy[contDf_copy['relation'] == "Friend"]
+        
+        print(parent_df)
+        print(co_worker_df)
+        print(friend_df)
 
 #class Find(Sort):
     """ Finds the person or category that the user is looking for.
