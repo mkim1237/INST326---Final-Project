@@ -156,12 +156,21 @@ class Find(Sort):
             None: returns None if contact isn't found        
         """
         
+
+        
         search_fname= input ("Enter the contact's first name.\n")
         search_lname= input ("Enter the contact's last name. Enter none if no last name.\n")
         search_category= input ("Enter the contact's relationship to you, or enter none if do not wish to use a category.\n")
+        
+        if search_lname == "" and search_category== "":
 
         if search_lname == "" and search_category== "":
             contDf_copy1 = self.contDf.copy()
+            self.choose_df = contDf_copy1 [contDf_copy1 ['name'] == search_fname]
+            print(self.choose_df)
+            
+            
+        elif search_lname == "":
             self.choose_df = contDf_copy1 [contDf_copy1 ['name'] == search_fname]
             print(self.choose_df)
 
@@ -171,7 +180,22 @@ class Find(Sort):
                                        search_fname) 
                                       & 
                                       (contDf_copy1["relation"]== 
+            self.choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
+                                       search_fname) 
+                                      & 
+                                      (contDf_copy1["relation"]== 
                                                     search_category)]
+            
+            print(self.choose_df)
+            
+        elif search_category == "":
+            contDf_copy1 = self.contDf.copy()
+            full_name= (search_fname+" "+search_lname)
+            self.choose_df = contDf_copy1 [contDf_copy1 ['name'] == 
+                                       full_name]
+            print(self.choose_df)
+            
+            
             print(self.choose_df)
 
         elif search_category == "":
@@ -182,18 +206,26 @@ class Find(Sort):
             print(self.choose_df)
 
 
-        else:
             contDf_copy1 = self.contDf.copy()
             full_name= (search_fname+" "+search_lname)
+            choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
             self.choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
                                        full_name) 
                                       &
                                       (contDf_copy1["relation"]== 
-                                                    search_category)]
+            self.choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
+                                       full_name) 
+                                      &
+                                      (contDf_copy1["relation"]== 
             # Todo: back in the initialization step make the names.lower()
+            print(choose_df)
+            print(self.choose_df)
+    
+        
+        
+        
             print(self.choose_df)
             
-    def __str__(self):
         # Done by Shannon (+ James)
         """Returns an informal representation of the found contact 
         (or all the found contacts)
@@ -203,6 +235,22 @@ class Find(Sort):
         Returns:
             list(str) : the list representation
         """
+        
+        repr_list= []
+        repr_name = str(self.choose_df.iloc[0, 0])
+        repr_year = str(self.choose_df.iloc[0, 1])
+        repr_salary = str(self.choose_df.iloc[0, 2])
+        repr_relation = str(self.choose_df.iloc[0, 3])
+        
+        repr_list.append({'name': repr_name, 
+                          'year': repr_year, 'salary': repr_salary,
+                          'relation': repr_relation})
+        
+        
+        return  (f"{repr_name} {repr_year}  {repr_salary} {repr_relation}")
+        
+        
+        
         repr_list= []
         repr_name = str(self.choose_df.iloc[0, 0])
         repr_year = str(self.choose_df.iloc[0, 1])
@@ -218,7 +266,6 @@ class Find(Sort):
 
 
 
-    def Msg(self):
         # Done by Shannon (+ Min)
         """Sends a message to the contact
         
