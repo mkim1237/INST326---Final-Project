@@ -211,25 +211,25 @@ class Find(Sort):
         
         
         
-def Msg(filepath, name):
-    # Done by Shannon (+ Min)
-    """Sends a message to the contact
-    
-    Args: 
-        name (string): name of the contact that message is being sent to
+    def Msg(self):
+        # Done by Shannon (+ Min)
+        """Sends a message to the contact
         
-    Side effects:
-        Prints an f string of the message
-    
-    """
-    if Find(Sort(filepath)) == "Family":
-        return f"Emergency Family Meeting Required!"
-    elif Find(Sort(filepath)) == "Coworker":
-        return f"Reminder for Work/Assignment Due within 24 Hours!"
-    elif Find(Sort(filepath)) == "Friend":
-        return f"Party Plan Incoming~!"
-    else:
-        return f"Currently Unavailable"
+        Args: 
+            name (string): name of the contact that message is being sent to
+            
+        Side effects:
+            Prints an f string of the message
+        
+        """
+        if self.choose_df[relation] == "Family":
+            return f"Emergency Family Meeting Required!"
+        elif self.choose_df[relation] == "Coworker":
+            return f"Reminder for Work/Assignment Due within 24 Hours!"
+        elif self.choose_df[relation] == "Friend":
+            return f"Party Plan Incoming~!"
+        else:
+            return f"Currently Unavailable"
     
     
 
@@ -246,7 +246,7 @@ def main(filepath, name):
     contList = readCont(filepath)
     print(contList)
     
-    print(f"Quick Message Sent to {name}: {Msg(filepath, name)}")
+    print(f"Quick Message Sent to {name}: {Find.Msg()}")
     
 
 def parse_args(arglist):
