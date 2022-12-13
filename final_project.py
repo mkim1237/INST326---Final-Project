@@ -30,13 +30,17 @@ class Contact:
         
         self.contact = contact
         
-        expr = re.search(r"Contact \d:(\n.+)")
-        (r"Contact \d:(\n.+)(\n.+)(\n.+)(\n.+)(\n.+)(\n.+)")
-        (r".+?@.+")
-        (?P<phoneNum>[^,])
-        \s
-        (?P<relation>[^,])
-                         , contact)
+        expr = re.search(r"""(?x)
+                        ^(?P<name>\n.+)
+                        \s
+                        (?P<address>(\n.+)(\n.+)(\n.+)(\n.+)(\n.+)(\n.+))
+                        \s
+                        (?P<email>.+?@.+")
+                        \s
+                        (?P<phoneNum>[^,])
+                        \s
+                        (?P<relation>\w)
+                        """, contact)
         if expr:
             self.name = expr.group("name")
             self.address = expr.group("address")
@@ -51,7 +55,7 @@ class Contact:
         # Done by Bushrah
         """ magic method that return formal representation of contact object
         Returns:
-            returns self of the name, address, email and phoneNum
+            returns self of the name, address, email, phoneNum, and relation
         
         """
         return self.name + ", " + self.address + ", "+ self.email + ", " + self.phoneNum + "," + self.relation
@@ -85,6 +89,8 @@ def readCont(filename):
             contactList.append(Contact(line))
                 
     return contactList
+
+
 class Sort:
     """ Convert the list of contacts into a dataframe using panda. Then, sort them 
     to put different groups/cateogries of the contact into separate dataframes.
@@ -124,11 +130,14 @@ class Sort:
         print(parent_df)
         print(co_worker_df)
         print(friend_df)
+        
+        
 class Find(Sort):
     """ Finds the person or category that the user is looking for.
     
     """
     def __init__(self, list):
+        # Done by James
         """ use super() to initialize a smaller object that displays the contact
         that the user is looking for. It's a child function so that it can
         directly take the object and find what the user wants better.
@@ -146,7 +155,7 @@ class Find(Sort):
         
     
     def choose(self):
-       
+        # Done by James
         """Returns back the found contact
         Args:
             search_name(str): stores the name of the found contact
@@ -191,21 +200,12 @@ class Find(Sort):
                                       &
                                       (contDf_copy1["relation"]== 
                                                     search_category)]
-            # Todo: back in the initialization step make the names.lower()
-            
-            print(self.choose_df)
-            
-            
-            
-            
-        
-        
-        
-        
+            print(self.choose_df)     
         
         
         
     def __str__(self):
+        # Done by Shannon (+ James)
         """Returns an informal representation of the found contact 
         (or all the found contacts)
         The representation will be in a list format containing strings: 
@@ -217,18 +217,21 @@ class Find(Sort):
         
         repr_list= []
         repr_name = str(self.choose_df.iloc[0, 0])
-        repr_year = str(self.choose_df.iloc[0, 1])
-        repr_salary = str(self.choose_df.iloc[0, 2])
-        repr_relation = str(self.choose_df.iloc[0, 3])
+        repr_address = str(self.choose_df.iloc[0, 1])
+        repr_email = str(self.choose_df.iloc[0, 2])
+        repr_phoneNum = str(self.choose_df.iloc[0, 3])
+        repr_relation = str(self.choose_df.iloc[0, 4])
         
         repr_list.append({'name': repr_name, 
-                          'year': repr_year, 'salary': repr_salary,
+                          'address': repr_address,
+                          'email': repr_email,
+                          'phoneNum': repr_phoneNum,
                           'relation': repr_relation})
         
         
-        return  (f"{repr_name} {repr_year}  {repr_salary} {repr_relation}")
+        return  (f"{repr_name} {repr_address}  {repr_email} {repr_phoneNum} {repr_relation}")
 
-    def Msg(self)
+    def Msg(self):
         # Done by Shannon (+ Min)
         """Sends a message to the contact
         
@@ -239,17 +242,17 @@ class Find(Sort):
             Prints an f string of the message
         
         """
-        if self.choose_df[relation] == "Family":
+        if self.choose_df["relation"] == "Family":
             return f"Emergency Family Meeting Required!"
-        elif self.choose_df[relation] == "Coworker":
+        elif self.choose_df["relation"] == "Coworker":
             return f"Reminder for Work/Assignment Due within 24 Hours!"
-        elif self.choose_df[relation] == "Friend":
+        elif self.choose_df["relation"] == "Friend":
             return f"Party Plan Incoming~!"
         else:
             return f"Currently Unavailable"
     
     
-def main(filepath, name):
+def main(filepath):
     # Done by Kingsley (+ Min)
     """ Sort and organize the contact litst, then find a person to message or notify.
     Args: 
@@ -262,7 +265,8 @@ def main(filepath, name):
     contList = readCont(filepath)
     print(contList)
     
-    print(f"Quick Message Sent to {name}: {Find.Msg()}")
+    lookingFor = Find(Sort(filepath)).choose()
+    print(f"Quick Message Sent: {lookingFor.Msg()}")
     
 def parse_args(arglist):
     # Done by Kingsley
@@ -281,6 +285,7 @@ def parse_args(arglist):
     parser = ArgumentParser()
     parser.add_argument("filepath", "name", help="file contains contacts of people")
     return parser.parse_args(arglist)
+
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
     main(args.filepath)
