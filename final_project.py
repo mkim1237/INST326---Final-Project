@@ -47,19 +47,15 @@ class Contact:
             self.relation = expr.group("relation")
         else:
             raise ValueError
-            
-
     
     def __repr__(self):
         # Done by Bushrah
         """ magic method that return formal representation of contact object
         Returns:
             returns self of the name, address, email and phoneNum
-        
         """
         return self.name + ", " + self.address + ", "+ self.email + ", " + self.phoneNum + "," + self.relation
     
-  
     def as_dict(self):
         # Done by James
         """ Returns all attributes as dictionary entries
@@ -67,8 +63,6 @@ class Contact:
         return {'name': self.name, 'address': self.address, 
                 'email': self.email,"phone number":self.phoneNum,
                 "relation": self.relation }
-    
-    
     
 def readCont(filename):
     # Done by Min
@@ -79,7 +73,6 @@ def readCont(filename):
         
     Returns:
         contactList (list of str): a list of each line that is the Contact object.
-    
     """
     
     contactList = []
@@ -108,7 +101,6 @@ class Sort:
         """
         self.contDf = pd.DataFrame([contact.as_dict() for contact in list])
     
-    
     def categorize(self):
         # Done by James
         """ Sorts the master dataframe created with the init method of the 
@@ -129,11 +121,8 @@ class Sort:
         print(co_worker_df)
         print(friend_df)
 
-
-
 class Find(Sort):
-    """ Finds the person or category that the user is looking for.
-    
+    """ Finds the person or category that the user is looking for
     """
     def __init__(self, list):
         # Done by James
@@ -151,8 +140,6 @@ class Find(Sort):
         """
         super().__init__(list)
         
-    
-    
     def choose(self):
         # Done by James
         """Returns back the found contact
@@ -162,8 +149,6 @@ class Find(Sort):
             search_name(str): returns the found contact
             None: returns None if contact isn't found        
         """
-
-        
         search_fname= input ("Enter the contact's first name.\n")
         search_lname= input ("Enter the contact's last name. Enter none if no last name.\n")
         search_category= input ("Enter the contact's relationship to you, or enter none if do not wish to use a category.\n")
@@ -172,8 +157,7 @@ class Find(Sort):
             contDf_copy1 = self.contDf.copy()
             self.choose_df = contDf_copy1 [contDf_copy1 ['name'] == search_fname]
             print(self.choose_df)
-            
-            
+                
         elif search_lname == "":
             contDf_copy1 = self.contDf.copy()
             self.choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
@@ -190,7 +174,6 @@ class Find(Sort):
                                        full_name]
             print(self.choose_df)
             
-            
         else:
             contDf_copy1 = self.contDf.copy()
             full_name= (search_fname+" "+search_lname)
@@ -202,9 +185,6 @@ class Find(Sort):
             # Todo: back in the initialization step make the names.lower()
             print(self.choose_df)
     
-        
-        
-        
     def __str__(self):
         # Done by Shannon
         """Returns an informal representation of the found contact 
@@ -225,10 +205,7 @@ class Find(Sort):
                           'year': repr_year, 'salary': repr_salary,
                           'relation': repr_relation})
         
-        
-        return  (f"{repr_name} {repr_year}  {repr_salary} {repr_relation}")
-        
-        
+        return  (f"{repr_name} {repr_year} {repr_salary} {repr_relation}")
         
     def Msg(self):
         # Done by Shannon (+ Min)
@@ -249,8 +226,6 @@ class Find(Sort):
             return f"Party Plan Incoming~!"
         else:
             return f"Currently Unavailable"
-    
-    
 
 def main(filepath, name):
     # Done by Kingsley (+ Min)
