@@ -95,7 +95,7 @@ class Sort:
         
     """
     def __init__(self, list):
-        # Done by Min
+        # Done by Min (+ James)
         """ Creates an attribute of dataframe by converting the list argument.
         
         Args:
