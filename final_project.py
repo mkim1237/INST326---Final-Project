@@ -210,10 +210,8 @@ class Find(Sort):
     def Msg(self):
         # Done by Shannon (+ Min)
         """Sends a message to the contact
-        
         Args: 
-            name (string): name of the contact that message is being sent to
-            
+            self
         Side effects:
             Prints an f string of the message
         
