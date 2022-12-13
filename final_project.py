@@ -5,12 +5,10 @@
 #James: Hi Everyoneeoa
 #
 #
-
 from argparse import ArgumentParser
 import pandas as pd
 import re
 import sys
-
 class Contact:
     """ Reads a line of contact list and divides the contact info into different 
     attributes.
@@ -48,7 +46,6 @@ class Contact:
         else:
             raise ValueError
             
-
     
     def __repr__(self):
         # Done by Bushrah
@@ -88,7 +85,6 @@ def readCont(filename):
             contactList.append(Contact(line))
                 
     return contactList
-
 class Sort:
     """ Convert the list of contacts into a dataframe using panda. Then, sort them 
     to put different groups/cateogries of the contact into separate dataframes.
@@ -128,9 +124,6 @@ class Sort:
         print(parent_df)
         print(co_worker_df)
         print(friend_df)
-
-
-
 class Find(Sort):
     """ Finds the person or category that the user is looking for.
     
@@ -162,44 +155,46 @@ class Find(Sort):
             search_name(str): returns the found contact
             None: returns None if contact isn't found        
         """
-    
-    
+        
         search_fname= input ("Enter the contact's first name.\n")
         search_lname= input ("Enter the contact's last name. Enter none if no last name.\n")
         search_category= input ("Enter the contact's relationship to you, or enter none if do not wish to use a category.\n")
-        
-        print (search_fname+search_lname)
-        
-        if search_lname == "none" and search_category== "none":
+
+        if search_lname == "" and search_category== "":
             contDf_copy1 = self.contDf.copy()
-            choose_df = contDf_copy1 [contDf_copy1 ['name'] == search_fname]
-            print(choose_df)
-            
-        elif search_lname == "none":
+            self.choose_df = contDf_copy1 [contDf_copy1 ['name'] == search_fname]
+            print(self.choose_df)
+
+        elif search_lname == "":
             contDf_copy1 = self.contDf.copy()
-            choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
-                                    search_fname) 
-                                    & 
-                                    (contDf_copy1["relation"]== 
+            self.choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
+                                       search_fname) 
+                                      & 
+                                      (contDf_copy1["relation"]== 
                                                     search_category)]
-            print(choose_df)
-            
+            print(self.choose_df)
+
+        elif search_category == "":
+            contDf_copy1 = self.contDf.copy()
+            full_name= (search_fname+" "+search_lname)
+            self.choose_df = contDf_copy1 [contDf_copy1 ['name'] == 
+                                       full_name]
+            print(self.choose_df)
+
+
         else:
             contDf_copy1 = self.contDf.copy()
             full_name= (search_fname+" "+search_lname)
-            choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
-                                    full_name) 
-                                    &
-                                    (contDf_copy1["relation"]== 
+            self.choose_df = contDf_copy1 [(contDf_copy1 ['name'] == 
+                                       full_name) 
+                                      &
+                                      (contDf_copy1["relation"]== 
                                                     search_category)]
             # Todo: back in the initialization step make the names.lower()
-            print(choose_df)
-    
-        
-        
-        
+            print(self.choose_df)
+            
     def __str__(self):
-        # Done by Shannon
+        # Done by Shannon (+ James)
         """Returns an informal representation of the found contact 
         (or all the found contacts)
         The representation will be in a list format containing strings: 
@@ -208,9 +203,21 @@ class Find(Sort):
         Returns:
             list(str) : the list representation
         """
-        
-        
-        
+        repr_list= []
+        repr_name = str(self.choose_df.iloc[0, 0])
+        repr_year = str(self.choose_df.iloc[0, 1])
+        repr_salary = str(self.choose_df.iloc[0, 2])
+        repr_relation = str(self.choose_df.iloc[0, 3])
+
+        repr_list.append({'name': repr_name, 
+                          'year': repr_year, 'salary': repr_salary,
+                          'relation': repr_relation})
+
+
+        return  (f"{repr_name} {repr_year}  {repr_salary} {repr_relation}")
+
+
+
     def Msg(self):
         # Done by Shannon (+ Min)
         """Sends a message to the contact
@@ -232,7 +239,6 @@ class Find(Sort):
             return f"Currently Unavailable"
     
     
-
 def main(filepath, name):
     # Done by Kingsley (+ Min)
     """ Sort and organize the contact litst, then find a person to message or notify.
@@ -248,7 +254,6 @@ def main(filepath, name):
     
     print(f"Quick Message Sent to {name}: {Find.Msg()}")
     
-
 def parse_args(arglist):
     # Done by Kingsley
     """ Parse command line arguments.
@@ -262,15 +267,13 @@ def parse_args(arglist):
         
     Returns:
         namespace: the parsed arguments, as a namespace.
-
     """
     parser = ArgumentParser()
     parser.add_argument("filepath", "name", help="file contains contacts of people")
     return parser.parse_args(arglist)
-
 if __name__ == "__main__":
     args = parse_args(sys.argv[1:])
     main(args.filepath)
 
-
-
+        
+        
