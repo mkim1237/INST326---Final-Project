@@ -1,4 +1,4 @@
-Name, Address, Email, PhoneNum, Relationship
+name, address, email, phoneNum, relation
 John, 1212 Some Dr Whatever NJ 00000, john123@gmail.com, 4432223333, Friend
 John Cena, 3210 That Rd Something NY 66666, jcena333@gmail.com, 3012229393, Family
 Brarbruh Ahhh, 8282 This Ct Ummmmm MD 11111, brauhh3@gmail.com, 2402223333, Friend
