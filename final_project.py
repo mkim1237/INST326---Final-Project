@@ -17,6 +17,7 @@ class Contact:
     
     """
     def __init__(self, contact):
+        # Done by Bushrah (+ Min)
         """ reads the line and use regular expression to initialize contact values 
         (names, phone number, relation, etdc)
         
@@ -50,6 +51,7 @@ class Contact:
 
     
     def __repr__(self):
+        # Done by Bushrah
         """ magic method that return formal representation of contact object
         Returns:
             returns self of the name, address, email and phoneNum
@@ -57,9 +59,11 @@ class Contact:
         """
         return self.name + ", " + self.address + ", "+ self.email + ", " + self.phoneNum + "," + self.relation
     
-    #added by james for the sort class. Returns all attributes as dictionary
-    #entries
+  
     def as_dict(self):
+        # Done by James
+        """ Returns all attributes as dictionary entries
+        """
         return {'name': self.name, 'address': self.address, 
                 'email': self.email,"phone number":self.phoneNum,
                 "relation": self.relation }
@@ -67,6 +71,7 @@ class Contact:
     
     
 def readCont(filename):
+    # Done by Min
     """ Using with open, read all lines of contact file and puts them into a single list.
     
     Args:
@@ -90,6 +95,7 @@ class Sort:
         
     """
     def __init__(self, list):
+        # Done by Min
         """ Creates an attribute of dataframe by converting the list argument.
         
         Args:
@@ -104,6 +110,7 @@ class Sort:
     
     
     def categorize(self):
+        # Done by James
         """ Sorts the master dataframe created with the init method of the 
         "Sort" class by making smaller dataframes from the main dataframe 
         depending on data from the amster data frame.
@@ -129,6 +136,7 @@ class Find(Sort):
     
     """
     def __init__(self, list):
+        # Done by James
         """ use super() to initialize a smaller object that displays the contact
         that the user is looking for. It's a child function so that it can
         directly take the object and find what the user wants better.
@@ -146,6 +154,7 @@ class Find(Sort):
     
     
     def choose(self):
+        # Done by James
         """Returns back the found contact
         Args:
             search_name(str): stores the name of the found contact
@@ -190,6 +199,7 @@ class Find(Sort):
         
         
     def __str__(self):
+        # Done by Shannon
         """Returns an informal representation of the found contact 
         (or all the found contacts)
         The representation will be in a list format containing strings: 
@@ -202,6 +212,7 @@ class Find(Sort):
         
         
 def Msg(filepath, name):
+    # Done by Shannon (+ Min)
     """Sends a message to the contact
     
     Args: 
@@ -223,6 +234,7 @@ def Msg(filepath, name):
     
 
 def main(filepath, name):
+    # Done by Kingsley (+ Min)
     """ Sort and organize the contact litst, then find a person to message or notify.
     Args: 
          filepath(str): filepath containing contact list, address, email, name, phone number and messeges. 
@@ -238,6 +250,7 @@ def main(filepath, name):
     
 
 def parse_args(arglist):
+    # Done by Kingsley
     """ Parse command line arguments.
     
     Expect two mandatory arguments:
