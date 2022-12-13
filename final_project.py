@@ -116,6 +116,7 @@ class Sort:
         """ Sorts the master dataframe created with the init method of the 
         "Sort" class by making smaller dataframes from the main dataframe 
         depending on data from the amster data frame.
+        
         Side effets:
             contDF (dataframe): changes how the dataframe is categorized and
             organized. Smaller dataframes are created depending on the 
@@ -143,12 +144,7 @@ class Find(Sort):
         directly take the object and find what the user wants better.
         
         Args:
-            search_name (string): the name of the contact that the user is look
-            ing for.
-            search_category (string): the category and or datafram column name
-            that the user is searching for specifically. search_category is set
-            to None by default incase the user simply wants to look for a person
-            's name rather than including more information.    
+            list (list of str): list of contact to be put into super class' init/   
         """
         super().__init__(list)
         
@@ -159,9 +155,8 @@ class Find(Sort):
         """Returns back the found contact
         Args:
             search_name(str): stores the name of the found contact
-        Returns:
-            search_name(str): returns the found contact
-            None: returns None if contact isn't found        
+        Side effects:
+            choose_df (dataframe): prints a dataframe of the chosen category or name.
         """
         search_fname= input ("Enter the contact's first name.\n")
         search_lname= input ("Enter the contact's last name. Enter none if no last name.\n")
@@ -257,7 +252,6 @@ def main(filepath):
     """ Sort and organize the contact litst, then find a person to message or notify.
     Args: 
          filepath(str): filepath containing contact list, address, email, name, phone number and messeges. 
-         name (str): the name of the person in the contact
          
     Side effects:
         Prints the message or notification written to the person
@@ -265,16 +259,15 @@ def main(filepath):
     contList = readCont(filepath)
     print(contList)
     
-    lookingFor = Find(Sort(filepath)).choose()
+    lookingFor = Find(Sort(filepath))
     print(f"Quick Message Sent: {lookingFor.Msg()}")
     
 def parse_args(arglist):
     # Done by Kingsley
     """ Parse command line arguments.
     
-    Expect two mandatory arguments:
+    Expect a mandatory argument:
         filename: path to a file of names and info of families.
-        name: the name of the person in contact
     
     Args:
         arglist (list of str): arguments from the command line.
@@ -283,7 +276,7 @@ def parse_args(arglist):
         namespace: the parsed arguments, as a namespace.
     """
     parser = ArgumentParser()
-    parser.add_argument("filepath", "name", help="file contains contacts of people")
+    parser.add_argument("filepath", help="file contains contacts of people")
     return parser.parse_args(arglist)
 
 if __name__ == "__main__":
